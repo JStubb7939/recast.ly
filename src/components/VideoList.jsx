@@ -1,14 +1,8 @@
-var VideoList = () => (
+var VideoList = (props) => ( // should make the contents a method to use elsewhere
   <div className="video-list media">
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
+    {props.videos.map(video =>
+      <VideoListEntry video={video} /> //need to add keys here as a prop
+    )}
   </div>
 );
 
@@ -21,3 +15,6 @@ VideoList.propTypes = {
 // In the ES6 spec, files are "modules" and do not share a top-level scope.
 // `var` declarations will only exist globally where explicitly defined.
 window.VideoList = VideoList;
+
+
+// this is where we'll create the click event and pass it back to this.props.playVideo
