@@ -1,13 +1,48 @@
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      videos: window.exampleVideoData,
+      currentVideo: window.exampleVideoData[0]
+    };
+  }
+
+  componentDidMount() {
+    this._getYouTubeVideos('cute kittens');
+  }
+
+  _getYouTubeVideos(query) {
+    let options = {
+      key: this.props.API_KEY,
+      query: query
+    };
+
+    this.props.searchYouTube(options, (videos) => {
+      this.setState({
+        videos: videos,
+        currentVideo: videos[0]
+      });
+    });
+  }
+
+  _handleVideoListEntryTitleClick(video) {
+    this.setState({
+      currentVideo: video
+    });
+  }
+
+
+
   render() {
     return (
       <div>
-        <Nav />
+        <Nav handleSearchInputChange={this._getYouTubeVideos.bind(this)} />
         <div className="col-md-7">
-          <VideoPlayer videos={exampleVideoData} />
+          <VideoPlayer video={this.state.currentVideo} />
         </div>
         <div className="col-md-5">
-          <VideoList videos={exampleVideoData} />
+          <VideoList videos={this.state.videos} handleVideoListEntryTitleClick={this._handleVideoListEntryTitleClick.bind(this)} />
         </div>
       </div>
     );

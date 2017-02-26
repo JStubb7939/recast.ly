@@ -1,10 +1,11 @@
-var VideoList = (props) => ( // should make the contents a method to use elsewhere
+var VideoList = ({videos, handleVideoListEntryTitleClick}) => ( // should make the contents a method to use elsewhere
   <div className="video-list media">
-    {props.videos.map(video =>
-      <VideoListEntry video={video} /> //need to add keys here as a prop
+    {videos.map((video) =>
+      <VideoListEntry video={video} handleVideoListEntryTitleClick={handleVideoListEntryTitleClick} key={video.id.videoId} /> //need to add keys here as a prop
     )}
   </div>
 );
+
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated

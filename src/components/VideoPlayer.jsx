@@ -1,19 +1,34 @@
-class VideoPlayer {
-  render() {
-    return (
-      <div className='video-player'>
-        <div className='embed-responsive embed-responsive-16by9'>
-          <iframe className='embed-responsive-item' src={'https://www.youtube.com/embed/' + this.props.video.id.videoId} allowFullScreen></iframe>
-        </div>
-        <div className='video-player-details'>
-          <h3>{this.props.video.snippet.title}</h3>
-          <div>{this.props.video.snippet.description}</div>
-        </div>
-      </div>
-    );
-  }
-}
+// class VideoPlayer extends App {
+//   constructor(props) {
+//     super(props);
+//   }
+//   render() {
+//     return (
+//       <div className='video-player'>
+//         <div className='embed-responsive embed-responsive-16by9'>
+//           <iframe className='embed-responsive-item' src={this.props.currentVideo ? 'https://www.youtube.com/embed/' + this.props.currentVideo.id.videoId : ''} allowFullScreen></iframe>
+//         </div>
+//         <div className='video-player-details'>
+//           <h3>{this.props.currentVideo ? this.currentVideo.snippet.title : 'No current video'}</h3>
+//           <div>{this.props.currentVideo ? this.currentVideo.snippet.description 'Select video'}</div>
+//         </div>
+//       </div>
+//     );
+//   }
+// }
 
+var VideoPlayer = ({video}) => (
+  <div className='video-player'>
+    <div className='embed-responsive embed-responsive-16by9'>
+      <iframe className='embed-responsive-item' src={`https://www.youtube.com/embed/${video.id.videoId}`} allowFullScreen></iframe>
+    </div>
+    <div className='video-player-details'>
+      <h3>{video.snippet.title}</h3>
+      <div>{video.snippet.description}</div>
+    </div>
+  </div>
+
+);
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
